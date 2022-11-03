@@ -9,7 +9,7 @@ router.get('/:q', (req, res) => {
         axios({
             method: 'GET',
             url: 'https://api.giphy.com/v1/gifs/search',
-                params: {
+                  params: {
                         api_key: process.env.GIPHY_API_KEY,
                         q: req.params,
                         limit:10
