@@ -19,7 +19,6 @@ const search = (state = [], action) => {
         default: 
         return state;
     }
-    return state;
 }
 
 const favorites = (state = [], action) => {
