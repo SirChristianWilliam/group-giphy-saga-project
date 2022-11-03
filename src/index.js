@@ -21,9 +21,9 @@ const favorites = (state = [], action) => {
     return state;
 }
 
-// function* fetchSearch() {
-//     console.log('in fetchSearch');
-// }
+function* fetchSearch() {
+    console.log('in fetchSearch');
+}
 
 // function* fetchFavorites() {
 //     console.log('in fetchFavorites');
@@ -44,7 +44,7 @@ const favorites = (state = [], action) => {
 
 function* watcherSaga() {
 
-    // yield takeEvery('FETCH_SEARCH');
+     yield takeEvery('FETCH_SEARCH', fetchSearch);
 
     // yield takeEvery('FETCH_FAVORITES');
 
