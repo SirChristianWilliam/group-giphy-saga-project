@@ -11,13 +11,15 @@ import axios from 'axios';
 import { takeEvery, put } from 'redux-saga/effects';
 // import registerServiceWorker from './registerServiceWorker';
 
-// const search = (state = [], action) => {
-//     console.log('in search reducer', state);
-// }
+const search = (state = [], action) => {
+    console.log('in search reducer', state);
+    return state;
+}
 
-// const favorites = (state = [], action) => {
-//     console.log('in favorites reducer', state)
-// }
+const favorites = (state = [], action) => {
+    console.log('in favorites reducer', state)
+    return state;
+}
 
 // function* fetchSearch() {
 //     console.log('in fetchSearch');
@@ -42,23 +44,23 @@ import { takeEvery, put } from 'redux-saga/effects';
 
 function* watcherSaga() {
 
-    yield takeEvery('FETCH_SEARCH');
+    // yield takeEvery('FETCH_SEARCH');
 
-    yield takeEvery('FETCH_FAVORITES');
+    // yield takeEvery('FETCH_FAVORITES');
 
-    yield takeEvery('ADD_FAVORITE');
+    // yield takeEvery('ADD_FAVORITE');
 
-    yield takeEvery('DELETE_FAVORITE');
+    // yield takeEvery('DELETE_FAVORITE');
 
-    yield takeEvery('CHANGE_CATEGORY');
+    // yield takeEvery('CHANGE_CATEGORY');
 }
 
 const sagaMiddleware = createSagaMiddleware();
 
 const storeInstance = createStore(
     combineReducers({
-        // search,
-        // favorites,
+        search,
+        favorites,
     }),
     applyMiddleware(sagaMiddleware,logger),
 );
