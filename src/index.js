@@ -11,8 +11,12 @@ import axios from 'axios';
 import { takeEvery, put } from 'redux-saga/effects';
 // import registerServiceWorker from './registerServiceWorker';
 
-const search = (state = [], action) => {
-    console.log('in search reducer', state);
+// const search = (state = [], action) => {
+//     console.log('in search reducer', state);
+// }
+
+const favorites = (state = [], action) => {
+    console.log('in favorites reducer', state)
     switch (action.type) {
         case 'SET_FAVORITES':
             return action.payload;
@@ -21,17 +25,20 @@ const search = (state = [], action) => {
     }
 }
 
-const favorites = (state = [], action) => {
-    console.log('in favorites reducer', state)
-    return state;
-}
-
 // function* fetchSearch() {
 //     console.log('in fetchSearch');
 // }
 
-function* fetchFavorites() {
-    console.log('in fetchFavorites');
+function* fetchFavorites(action) {
+    console.log('rootsaga', action);
+
+    let response = yield axios.get('/api/favorite');
+    console.log('in fetchFavorites', res.data);
+
+    yield put({
+        type: 'SET_FAVORITES',
+        payload: response.data
+  });
 }
 
 // function* addFavorites() {
@@ -49,22 +56,22 @@ function* fetchFavorites() {
 
 function* watcherSaga() {
 
-    // yield takeEvery('FETCH_SEARCH');
+    yield takeEvery('FETCH_SEARCH');
 
-    // yield takeEvery('FETCH_FAVORITES');
+    yield takeEvery('FETCH_FAVORITES', fetchFavorites);
 
-    // yield takeEvery('ADD_FAVORITE');
+    yield takeEvery('ADD_FAVORITE');
 
-    // yield takeEvery('DELETE_FAVORITE');
+    yield takeEvery('DELETE_FAVORITE');
 
-    // yield takeEvery('CHANGE_CATEGORY');
+    yield takeEvery('CHANGE_CATEGORY');
 }
 
 const sagaMiddleware = createSagaMiddleware();
 
 const storeInstance = createStore(
     combineReducers({
-        search,
+        // search,
         favorites,
     }),
     applyMiddleware(sagaMiddleware,logger),
