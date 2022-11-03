@@ -4,16 +4,17 @@ import { useDispatch, useSelector } from 'react-redux';
 
 
 function Search() {
-    let [newSearch, setNewSearch] = useState({ id: 0, name: '' });
 
     const dispatch = useDispatch();
+    let [newSearch, setNewSearch] = useState({ id: 0, name: '' });
+
     const addImage = (event) => {
         event.preventDefault();
-        console.log('in addImage',newSearch.id)
+        console.log('in addImage', newSearch.id)
         dispatch({
             type: 'FETCH_SEARCH',
             payload: {
-                name: [newSearch.id] //sends the current id over, new search
+                name: [newSearch] //sends the current id over, new search
                 // is the object
                 // setNewSearch({newSearch.id + 1, name: ''});
 
@@ -24,6 +25,7 @@ function Search() {
     const handleChange = (event) => {
         event.preventDefault();
         console.log('in handleChange');
+        console.log('event.target.value',event.target.value)
         setNewSearch({ ...newSearch, name: event.target.value })
 
     }

@@ -11,8 +11,9 @@ import axios from 'axios';
 import { takeEvery, put } from 'redux-saga/effects';
 // import registerServiceWorker from './registerServiceWorker';
 
-const search = (state = [], action) => {
-    console.log('in search reducer', state);
+const search = (state = "", action) => {
+    console.log('in search reducer state is', state);
+    console.log('in search action is',action)
     return state;
 }
 
@@ -23,6 +24,7 @@ const favorites = (state = [], action) => {
 
 function* fetchSearch() {
     console.log('in fetchSearch');
+    yield axios.get('/')
 }
 
 // function* fetchFavorites() {
