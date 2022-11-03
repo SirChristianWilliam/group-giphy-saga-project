@@ -13,6 +13,12 @@ import { takeEvery, put } from 'redux-saga/effects';
 
 const search = (state = [], action) => {
     console.log('in search reducer', state);
+    switch (action.type) {
+        case 'SET_FAVORITES':
+            return action.payload;
+        default: 
+        return state;
+    }
     return state;
 }
 
@@ -25,9 +31,9 @@ const favorites = (state = [], action) => {
 //     console.log('in fetchSearch');
 // }
 
-// function* fetchFavorites() {
-//     console.log('in fetchFavorites');
-// }
+function* fetchFavorites() {
+    console.log('in fetchFavorites');
+}
 
 // function* addFavorites() {
 //     console.log('in addFavorites');
