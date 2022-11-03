@@ -15,6 +15,16 @@ import { takeEvery, put } from 'redux-saga/effects';
 //     console.log('in search reducer', state);
 // }
 
+const search = (state = [], action) => {
+    console.log('in search reducer state is', state);
+    console.log('in search action is',action)
+    switch(action.type) {
+        case 'SET_SEARCH':
+            return action.payload
+    }
+    return state;
+};
+
 const favorites = (state = [], action) => {
     console.log('in favorites reducer', state)
     switch (action.type) {
@@ -25,9 +35,16 @@ const favorites = (state = [], action) => {
     }
 }
 
-// function* fetchSearch() {
-//     console.log('in fetchSearch');
-// }
+function* fetchSearch(action) {
+    console.log('in fetchSearch', action.payload.name);
+    let response = yield axios.get(`/api/giphy/${action.payload.name}`);
+    
+    yield put({
+            type: 'SET_SEARCH',
+            payload: response.data.data
+    })
+
+}
 
 function* fetchFavorites(action) {
     console.log('rootsaga', action);
@@ -56,7 +73,7 @@ function* fetchFavorites(action) {
 
 function* watcherSaga() {
 
-    yield takeEvery('FETCH_SEARCH');
+    yield takeEvery('FETCH_SEARCH', fetchSearch);
 
     yield takeEvery('FETCH_FAVORITES', fetchFavorites);
 
