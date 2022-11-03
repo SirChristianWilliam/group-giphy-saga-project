@@ -6,12 +6,15 @@ import Favorites from '../Favorites/Favorites';
 
 function App(props) {
   return (
-    <div>
-      <Header />
+    <>
+      <div>
+        <Header />
+      </div>
 
-      <Favorites />
-
-    </div>
+      <div>
+        <Favorites />
+      </div>
+    </>
   );
 }
 
