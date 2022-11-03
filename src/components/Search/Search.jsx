@@ -14,7 +14,7 @@ function Search() {
         dispatch({
             type: 'FETCH_SEARCH',
             payload: {
-                name: [newSearch] //sends the current id over, new search
+                name: newSearch //sends the current id over, new search
                 // is the object
                 // setNewSearch({newSearch.id + 1, name: ''});
 

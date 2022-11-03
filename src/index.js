@@ -24,7 +24,11 @@ const favorites = (state = [], action) => {
 
 function* fetchSearch() {
     console.log('in fetchSearch');
-    yield axios.get('/')
+    yield axios.get(`/api/category/${action.payload}`);
+
+    yield put({
+        type: 'FETCH_SEARCH'
+    })
 }
 
 // function* fetchFavorites() {
