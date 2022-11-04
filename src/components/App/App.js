@@ -9,18 +9,33 @@ import Search from '../Search/Search';
 function App(props) {
   return (
     <>
-      <div>
-        <Header />
-      </div>
-      
-      <div>
-        <Search />
-      </div>
+     <Router>
 
-      <div>
-        <Favorites />
-      </div>
-    
+
+
+        <Header /> 
+
+        <nav>
+            <ul>
+                <li>
+                {/* href to link outside our app here we use Link */}
+                <Link to="/" >Search</Link>
+                </li>
+                <li>
+                <Link to="/favorites">Favorites</Link>
+                </li>
+            </ul>
+        </nav>     
+            
+        <Route path='/'>
+            <Search />
+        </Route>
+
+        <Route path='/favorites'>
+            <Favorites />
+        </Route>
+
+    </Router>
     </>
   );
 }
