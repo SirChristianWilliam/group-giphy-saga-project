@@ -11,6 +11,7 @@ router.get('/', (req, res) => {
 // add a new favorite
 router.post('/', (req, res) => {
 
+
     //Object format for data send
     /*
         {url: x, category_id: y}
