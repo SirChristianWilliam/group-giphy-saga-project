@@ -20,10 +20,10 @@ function App(props) {
             <ul>
                 <li>
                 {/* href to link outside our app here we use Link */}
-                <Link to="/" >Search</Link>
+                <Link to="/" exact>Search</Link>
                 </li>
                 <li>
-                <Link to="/favorites">Favorites</Link>
+                <Link to="/favorites" exact>Favorites</Link>
                 </li>
             </ul>
         </nav>     
