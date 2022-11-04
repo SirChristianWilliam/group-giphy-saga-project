@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 // import axios from 'axios';
-
+ 
 
 function Search() {
 
@@ -31,6 +31,16 @@ function Search() {
 
     }
    
+    function genreClick() {
+        event.preventDefault();
+        console.log('in genreClick');
+        dispatch({
+            type: 'ADD_FAVORITE',
+            payload: {
+                url: image.images.downsized_large.url
+            }
+        })
+    }
     return (
         <>
        
@@ -53,8 +63,17 @@ function Search() {
                     <li key={image.images.downsized_large.url}>
                         <img  
                             src={image.images.downsized_large.url}
-                        />
+                        />  
+                        <select className="selectContainer">
+                            <option value="0">Select Genre</option>
+                            <option onClick={genreClick} value="1">Funny</option>
+                            <option onClick={genreClick} value="2">Cohort</option>
+                            <option onClick={genreClick} value="3">Cartoon</option>
+                            <option onClick={genreClick} value="4">NSFW</option>
+                            <option onClick={genreClick} value="5">Meme</option>
+                        </select>                    
                     </li>
+
                 ))}
             </ul>
 

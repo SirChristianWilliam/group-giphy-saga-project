@@ -9,6 +9,8 @@ import logger from 'redux-logger';
 import createSagaMiddleware from 'redux-saga';
 import axios from 'axios';
 import { takeEvery, put } from 'redux-saga/effects';
+
+
 // import registerServiceWorker from './registerServiceWorker';
 
 // const search = (state = [], action) => {
@@ -58,9 +60,13 @@ function* fetchFavorites(action) {
   });
 }
 
-// function* addFavorites() {
-//     console.log('in addFavorites');
-// }
+function* addFavorite() {
+    console.log('in addFavorites');
+    let response = yield axios.post('/api/favorite',action.payload);
+    // yield put({
+    //     type: 'FETCH_FAVORITES'
+    // })
+}
 
 // function* deleteFavorites() {
 //     console.log('in deleteFavorites');
@@ -71,13 +77,14 @@ function* fetchFavorites(action) {
 // }
 
 
+
 function* watcherSaga() {
 
     yield takeEvery('FETCH_SEARCH', fetchSearch);
 
     yield takeEvery('FETCH_FAVORITES', fetchFavorites);
 
-    // yield takeEvery('ADD_FAVORITE');
+    yield takeEvery('ADD_FAVORITE', addFavorite);
 
     // yield takeEvery('DELETE_FAVORITE');
 

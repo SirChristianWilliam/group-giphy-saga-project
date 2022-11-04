@@ -10,6 +10,7 @@ router.get('/', (req, res) => {
 
 // add a new favorite
 router.post('/', (req, res) => {
+    // add the image to be saved to the state from search  component
   res.sendStatus(200);
 });
 
