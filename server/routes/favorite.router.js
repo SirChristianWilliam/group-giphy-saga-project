@@ -5,7 +5,22 @@ const router = express.Router();
 
 // return all favorite images
 router.get('/', (req, res) => {
-  res.sendStatus(200);
+    sqlText = `
+        SELECT * FROM "giphy"
+        JOIN "category"
+            ON "giphy"."category_id" = "category"."id"; 
+    `;
+
+    pool.query(sqlText)
+        .then(response=>{
+            console.log('response favorites', response.rows);
+            res.send(response.rows);
+
+        })
+        .catch(err=>{
+            console.error('in get favories error');
+        });
+
 });
 
 // add a new favorite
