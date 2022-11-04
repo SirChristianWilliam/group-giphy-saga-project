@@ -10,8 +10,31 @@ router.get('/', (req, res) => {
 
 // add a new favorite
 router.post('/', (req, res) => {
-    // add the image to be saved to the state from search  component
-  res.sendStatus(200);
+
+
+    //Object format for data send
+    /*
+        {url: x, category_id: y}
+    */
+
+    //sql query to add giphy
+    sqlText = `
+        INSERT INTO "giphy"
+            ("url", "category_id)
+        VALUES
+            ($1, $2);
+    `;
+
+    sqlParams = [req.body.url, req.body.category_id];
+
+    pool.query(sqlText, sqlParams)
+        .then(result => {
+            res.sendStatus(201);
+        })
+        .catch(err=>{
+            console.error('in post giphy error', err);
+            res.sendStatus(500);
+        });
 });
 
 // update given favorite with a category id
