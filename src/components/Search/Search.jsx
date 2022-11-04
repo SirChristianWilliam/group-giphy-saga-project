@@ -69,7 +69,7 @@ function Search() {
                             src={image.images.downsized_large.url}
                         />
 
-                        <form onSubmit={genreClick}>
+                        {/* <form onSubmit={genreClick}>
                             <select className="selectContainer">
                                 <option value="0">Select Genre</option>
                                 <option value="1">Funny</option>
@@ -79,7 +79,7 @@ function Search() {
                                 <option value="5">Meme</option>
                             </select>
                             <button type="submit">Submit</button>
-                        </form>
+                        </form> */}
 
                     </li>
 

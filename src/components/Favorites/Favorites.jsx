@@ -8,6 +8,8 @@ function Favorites () {
     const dispatch = useDispatch();
     const favorites = useSelector(store => store.favorites);
 
+    console.log('favorites', favorites);
+
     useEffect(() => {
         fetchFavorites();
     }, []);
@@ -22,13 +24,17 @@ function Favorites () {
     return (
         <>
             <h3>Favorites</h3>
-{/* 
-            <ul>Favorites Gifs: {favorites.map(giphys =>
-                <li key={giphys.id}>
-                    {giphys}
-                </li>
-            )}
-            </ul> */}
+
+            <ul>
+                {favorites.map(gif=>{
+                    return(
+                        <li key={gif.id}>
+                            <img src={gif.url}></img>
+                            <p>Category: {gif.name}</p>
+                        </li>
+                    )
+                })}
+            </ul>
         </>
     );
 }
