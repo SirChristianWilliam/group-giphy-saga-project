@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import Header from '../Header/Header';
 import Favorites from '../Favorites/Favorites';
 import Search from '../Search/Search';
+import { HashRouter as Router, Route, Link } from 'react-router-dom'
 
 // import './App.css';
 
