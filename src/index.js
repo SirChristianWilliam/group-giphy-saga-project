@@ -50,7 +50,7 @@ function* fetchFavorites(action) {
     console.log('rootsaga', action);
 
     let response = yield axios.get('/api/favorite');
-    console.log('in fetchFavorites', res.data);
+    // console.log('in fetchFavorites', res.data);
 
     yield put({
         type: 'SET_FAVORITES',
@@ -77,18 +77,18 @@ function* watcherSaga() {
 
     yield takeEvery('FETCH_FAVORITES', fetchFavorites);
 
-    yield takeEvery('ADD_FAVORITE');
+    // yield takeEvery('ADD_FAVORITE');
 
-    yield takeEvery('DELETE_FAVORITE');
+    // yield takeEvery('DELETE_FAVORITE');
 
-    yield takeEvery('CHANGE_CATEGORY');
+    // yield takeEvery('CHANGE_CATEGORY');
 }
 
 const sagaMiddleware = createSagaMiddleware();
 
 const storeInstance = createStore(
     combineReducers({
-        // search,
+        search,
         favorites,
     }),
     applyMiddleware(sagaMiddleware,logger),

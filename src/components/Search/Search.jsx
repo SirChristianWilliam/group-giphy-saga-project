@@ -7,6 +7,7 @@ function Search() {
 
     const dispatch = useDispatch();
     let [newSearch, setNewSearch] = useState({ id: 0, name: '' });
+    const images = useSelector(store => store.search);
 
     const addImage = (event) => {
         event.preventDefault();
@@ -25,17 +26,18 @@ function Search() {
     const handleChange = (event) => {
         event.preventDefault();
         console.log('in handleChange');
-        console.log('event.target.value',event.target.value)
+        console.log('event.target.value', event.target.value)
         setNewSearch({ ...newSearch, name: event.target.value })
 
     }
-
+   
     return (
+        <>
+       
         <form
             className='formContainer'
             onSubmit={addImage}
         >
-
             <input
                 type='text'
                 value={newSearch.name}
@@ -44,7 +46,19 @@ function Search() {
             >
             </input>
             <button>Search</button>
-        </form>
-    )
+            </form>
+
+            <ul>
+                {images.map(image => (
+                    <li key={image.images.downsized_large.url}>
+                        <img  
+                            src={image.images.downsized_large.url}
+                        />
+                    </li>
+                ))}
+            </ul>
+
+            
+    </>);
 }
 export default Search;

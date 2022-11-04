@@ -22,13 +22,13 @@ function Favorites () {
     return (
         <>
             <h3>Favorites</h3>
-
+{/* 
             <ul>Favorites Gifs: {favorites.map(giphys =>
                 <li key={giphys.id}>
                     {giphys}
                 </li>
             )}
-            </ul>
+            </ul> */}
         </>
     );
 }
