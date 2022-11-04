@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 // import axios from 'axios';
- 
+
 
 function Search() {
 
@@ -30,54 +30,63 @@ function Search() {
         setNewSearch({ ...newSearch, name: event.target.value })
 
     }
-   
-    function genreClick() {
+
+    function genreClick(event) {
         event.preventDefault();
-        console.log('in genreClick');
+        if (!category) {
+            return
+        }
+        console.log('category is', category);
+        console.log('in genreClick!@!@!@!@!@@');
         dispatch({
             type: 'ADD_FAVORITE',
             payload: {
-                url: image.images.downsized_large.url
+                url: { category, id: fav.id }
             }
         })
     }
     return (
         <>
-       
-        <form
-            className='formContainer'
-            onSubmit={addImage}
-        >
-            <input
-                type='text'
-                value={newSearch.name}
-                placeholder='Search for new image'
-                onChange={handleChange}
+
+            <form
+                className='formContainer'
+                onSubmit={addImage}
             >
-            </input>
-            <button>Search</button>
+                <input
+                    type='text'
+                    value={newSearch.name}
+                    placeholder='Search for new image'
+                    onChange={handleChange}
+                >
+                </input>
+                <button>Search</button>
             </form>
 
             <ul>
                 {images.map(image => (
                     <li key={image.images.downsized_large.url}>
-                        <img  
+                        <img
                             src={image.images.downsized_large.url}
-                        />  
-                        <select className="selectContainer">
-                            <option value="0">Select Genre</option>
-                            <option onClick={genreClick} value="1">Funny</option>
-                            <option onClick={genreClick} value="2">Cohort</option>
-                            <option onClick={genreClick} value="3">Cartoon</option>
-                            <option onClick={genreClick} value="4">NSFW</option>
-                            <option onClick={genreClick} value="5">Meme</option>
-                        </select>                    
+                        />
+
+                        <form onSubmit={genreClick}>
+                            <select className="selectContainer">
+                                <option value="0">Select Genre</option>
+                                <option value="1">Funny</option>
+                                <option value="2">Cohort</option>
+                                <option value="3">Cartoon</option>
+                                <option value="4">NSFW</option>
+                                <option value="5">Meme</option>
+                            </select>
+                            <button type="submit">Submit</button>
+                        </form>
+
                     </li>
 
                 ))}
             </ul>
 
-            
-    </>);
+
+        </>);
 }
 export default Search;
